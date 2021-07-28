@@ -306,11 +306,12 @@ if (window.location.hash === "#gr") {
     $("a")[5].textContent = link0.gr;
     $("a")[2].textContent = link1.gr;
     $("a")[6].textContent = link1.gr;
-    if(window.innerWidth < 1030){
-        $("a")[6].classList.add("d-none");
-    }
     $("a")[3].textContent = link2.gr;
-    $("a")[7].textContent = link2.gr;           
+    $("a")[7].textContent = link2.gr; 
+    if(window.innerWidth < 1030){
+        $("a")[7].classList.add("d-none");
+    }
+          
     $("a")[4].textContent = link3.gr;
     $("a")[8].textContent = link3.gr;
 
@@ -355,17 +356,19 @@ if (window.location.hash === "#gr") {
     $("button")[0].textContent = button.gr;
     $("button")[1].textContent = button.gr;
     $("h3")[4].textContent = header3_2.gr;
+    $("h4")[2].textContent = header3_2.gr;
+
     $("p")[7].textContent = p7.gr;
     $("a")[15].textContent = link11.gr;
     $("p")[8].innerHTML = p8.gr;
 
     $("h3")[5].textContent = h3_3.gr;
     $("p")[9].textContent = p9.gr;
-    $("h4")[2].textContent = h4_2.gr;
-    $("h4")[3].textContent = h4_3.gr;
+    $("h4")[3].textContent = h4_2.gr;
+    $("h4")[4].textContent = h4_3.gr;
     $("h3")[6].textContent = h3_4.gr;
-    $("h4")[4].textContent = h4_4.gr;
-    $("h4")[6].textContent = h4_6.gr;
+    $("h4")[5].textContent = h4_4.gr;
+    $("h4")[7].textContent = h4_6.gr;
 
 } else if (window.location.hash === "#eng") {
     $("a")[1].textContent = link0.eng;
@@ -416,17 +419,18 @@ if (window.location.hash === "#gr") {
     $("button")[0].textContent = button.eng;
     $("button")[1].textContent = button.eng;
     $("h3")[4].textContent = header3_2.eng;
+    $("h4")[2].textContent = header3_2.eng;
     $("p")[7].textContent = p7.eng;
     $("a")[15].textContent = link11.eng;
     $("p")[8].innerHTML = p8.eng;
 
     $("h3")[5].textContent = h3_3.eng;
     $("p")[9].textContent = p9.eng;
-    $("h4")[2].textContent = h4_2.eng;
-    $("h4")[3].textContent = h4_3.eng;
+    $("h4")[3].textContent = h4_2.eng;
+    $("h4")[4].textContent = h4_3.eng;
     $("h3")[6].textContent = h3_4.eng;
-    $("h4")[4].textContent = h4_4.eng;
-    $("h4")[6].textContent = h4_6.eng;
+    $("h4")[5].textContent = h4_4.eng;
+    $("h4")[7].textContent = h4_6.eng;
 
 } else if (window.location.hash === "#ro") {
     $("a")[1].textContent = link0.ro;
@@ -477,17 +481,19 @@ if (window.location.hash === "#gr") {
     $("button")[0].textContent = button.ro;
     $("button")[1].textContent = button.ro;
     $("h3")[4].textContent = header3_2.ro;
+    $("h4")[2].textContent = header3_2.ro;
+
     $("p")[7].textContent = p7.ro;
     $("a")[15].textContent = link11.ro;
     $("p")[8].innerHTML = p8.ro;
 
     $("h3")[5].textContent = h3_3.ro;
     $("p")[9].textContent = p9.ro;
-    $("h4")[2].textContent = h4_2.ro;
-    $("h4")[3].textContent = h4_3.ro;
+    $("h4")[3].textContent = h4_2.ro;
+    $("h4")[4].textContent = h4_3.ro;
     $("h3")[6].textContent = h3_4.ro;
-    $("h4")[4].textContent = h4_4.ro;
-    $("h4")[6].textContent = h4_6.ro;
+    $("h4")[5].textContent = h4_4.ro;
+    $("h4")[7].textContent = h4_6.ro;
 
 
 } else if (window.location.hash === "#sr") {
@@ -539,17 +545,18 @@ if (window.location.hash === "#gr") {
     $("button")[0].textContent = button.sr;
     $("button")[1].textContent = button.sr;
     $("h3")[4].textContent = header3_2.sr;
+    $("h4")[2].textContent = header3_2.sr;
+
     $("p")[7].textContent = p7.sr;
     $("a")[15].textContent = link11.sr;
     $("p")[8].innerHTML = p8.sr;
 
     $("h3")[5].textContent = h3_3.sr;
     $("p")[9].textContent = p9.sr;
-    $("h4")[2].textContent = h4_2.sr;
-    $("h4")[3].textContent = h4_3.sr;
+    $("h4")[3].textContent = h4_2.sr;
+    $("h4")[4].textContent = h4_3.sr;
     $("h3")[6].textContent = h3_4.sr;
-    $("h4")[4].textContent = h4_4.sr;
-    $("h4")[6].textContent = h4_6.sr;
+    $("h4")[5].textContent = h4_4.sr;
+    $("h4")[7].textContent = h4_6.sr;
 }
-
 
