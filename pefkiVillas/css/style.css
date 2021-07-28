@@ -3,6 +3,12 @@
     font-size: 13px;
 }
 
+@media (min-width: 280px) {
+    :root{
+        font-size: 14px;
+    }
+}
+
 @media (min-width: 576px) {
     :root{
         font-size: 16px;
@@ -135,12 +141,12 @@ header a[href="#"]{
 }
 
 #hero-logo {
-    width: 80px;
+    width: 60px;
 }
 
 #arrow-down {
     position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -150,10 +156,9 @@ header a[href="#"]{
     display: none;
 }
 
-@media (min-height: 320px) and (min-width: 280px){
+@media (min-height: 280px) and (min-width: 280px){
     #arrow-down{
         display: block;
-        bottom: 10px;
     }
     .fa-stack{
         font-size: 20px;
@@ -168,7 +173,7 @@ header a[href="#"]{
         font-size: 22px;
     }
     #hero-logo {
-        width: 90px;
+        width: 80px;
     }
 }
 
@@ -441,7 +446,7 @@ header a[href="#"]{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    min-height: 640px;
+    min-height: 440px;
 }
 
 @media (orientation: portrait){
@@ -449,7 +454,11 @@ header a[href="#"]{
         background-image: url(../images/palm-p.jpg);
     }
 }
-
+@media (min-width: 768px){
+    #about-bg-2{
+        min-height: 640px;
+    }
+}
 
 #about-bg-2::before {
     content: "";
