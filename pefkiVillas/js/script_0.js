@@ -74,90 +74,95 @@ window.addEventListener("load", function(){
 
                     document.body.style.overflow = "hidden";
 
-                    let bg_gallery = document.createElement("div");
-                    document.body.appendChild(bg_gallery);
-                    bg_gallery.id = "bg-gallery";
+                    let bgGallery = document.createElement("div");
+                    document.body.appendChild(bgGallery);
+                    bgGallery.id = "bg-gallery";
 
-                    let photo_gallery = document.createElement("div");
-                    bg_gallery.appendChild(photo_gallery);
-                    photo_gallery.id = "photo-gallery";
+                    let photoGallery = document.createElement("div");
+                    bgGallery.appendChild(photoGallery);
+                    photoGallery.id = "photo-gallery";
+
+                    var header = document.createElement("h2");
+                    header.innerHTML = data.name;
+                    header.style.color = "white";
+                    photoGallery.appendChild(header);
 
 
-                    let header = document.createElement("div");
-                        let text = document.createElement("h2");
-                        header.appendChild(text);
-                        text.innerHTML = data.name;
-                        text.style.color = "white";
-                        let close_btn = document.createElement("div");
-                        close_btn.id = "gallery-close-button";
-                        header.appendChild(close_btn);
-                        header.id = "gallery-header";
-
-                        close_btn.addEventListener("click", function(){
-                            bg_gallery.style.display = "none";
+                    photoGallery.appendChild(closeBtn);
+                    let h = header.clientHeight - closeBtn.clientHeight;
+                    var style = photoGallery.currentStyle || window.getComputedStyle(photoGallery);
+                    closeBtn.style.top = parseInt(style.paddingTop) + h/2 + "px";
+                    console.log(closeBtn.style.top);
+                    closeBtn.addEventListener("click", function(){
+                        bgGallery.style.display = "none";
+                        document.body.style.overflow = "auto";
+                    });
+                    document.onkeyup = (event)=>{
+                        if(event.key == "Escape"){
+                            bgGallery.style.display = "none";
                             document.body.style.overflow = "auto";
-                        });
-                        document.onkeyup = (event)=>{
-                            if(event.key == "Escape"){
-                                bg_gallery.style.display = "none";
-                                document.body.style.overflow = "auto";
-                            }
-                        };
-                    photo_gallery.appendChild(header);
+                        }
+                    };
 
 
-                    let gallery_container = document.createElement("div");
-                    gallery_container.id = "gallery-container";
-                    photo_gallery.appendChild(gallery_container);
                     let gallery = document.createElement("div");
-                    gallery.classList.add('gallery');
-                    gallery_container.appendChild(gallery);
+                    photoGallery.appendChild(gallery);
+                    gallery.id = "gallery";
+                    gallery.classList.add('multi-carousel-inner');
 
                     data = data.images;
+
+                    var container = document.createElement("div");
+                    container.id = "container";
+                    photoGallery.appendChild(container);
+
+                    var imageContainer = document.createElement("div");
+                    imageContainer.id = "image-container";
+                    container.appendChild(imageContainer);
+
 
                     for(let i=0; i < data.length; i++){
 
                         let image = data[i].thumbnail;
 
-                        gallery.innerHTML += `<img src=${image.url} id=${data[i].id} height=${image.height} title=${data[i].title} class='gallery-images'>`;
+                        gallery.innerHTML += "<img src=" + image.url + " id=" + data[i].id + " width=" + image.width
+                            + " height=" + image.height + " title=" + data[i].title + " class='gallery-images multi-carousel-item'>";
 
+                        container.style.height = $(photoGallery).height() - $(header).outerHeight(true) - $(gallery).outerHeight(true) + "px";
                     }
 
 
-                    var container = document.createElement("div");
-                    container.id = "container";
-                    photo_gallery.appendChild(container);
+                    let arrowLeft = document.createElement("i");
+                    container.appendChild(arrowLeft);
+                    arrowLeft.classList.add("fas");
+                    arrowLeft.classList.add("fa-chevron-left");
+                    arrowLeft.id = "arrow-left";
+                    arrowLeft.classList.add("arrow");
+                    arrowLeft.style.top = container.clientHeight/2 - arrowLeft.clientHeight/2 + 'px';
 
-                        let arrow_container = document.createElement("div");
-                        arrow_container.id = "arrow-container";
-
-                        let arrowLeft = document.createElement("i");
-                        arrow_container.appendChild(arrowLeft);
-                        arrowLeft.classList.add("fas");
-                        arrowLeft.classList.add("fa-chevron-left");
-                        arrowLeft.classList.add("arrow");
-
-                        let arrowRight = document.createElement("i");
-                        arrow_container.appendChild(arrowRight);
-                        arrowRight.classList.add("fas");
-                        arrowRight.classList.add("fa-chevron-right");
-                        arrowRight.classList.add("arrow");
-
-                    container.appendChild(arrow_container);
-
+                    
+                    let arrowRight = document.createElement("i");
+                    container.appendChild(arrowRight);
+                    arrowRight.classList.add("fas");
+                    arrowRight.classList.add("fa-chevron-right");
+                    arrowRight.id = "arrow-right";
+                    arrowRight.classList.add("arrow");
+                    arrowRight.style.top = container.clientHeight/2 - arrowRight.clientHeight/2 + 'px';
 
 
                     let interval;
 
-                    var images = gallery.getElementsByClassName("gallery-images");
+                    var images = document.getElementsByClassName("gallery-images");
+
                     for(let j = 0; j < images.length; j++){
+                        console.log(images[j].id - 1);
                         
                         images[j].addEventListener("click", function(){
 
-                            container.style.backgroundImage = `url(${images[j].src})`;
+                            imageContainer.style.backgroundImage = "url(" + images[j].src + ")";
                             localStorage.setItem("selected-image", images[j].id - 1);
 
-                            if(photo_gallery.clientHeight < 540){
+                            if(photoGallery.clientHeight < 550){
                                 if(interval){
                                     cancelAnimationFrame(interval);
                                     interval = undefined;
@@ -171,16 +176,17 @@ window.addEventListener("load", function(){
 
 
                     let gallery_1 = gallery.cloneNode(true);
-                    gallery_container.appendChild(gallery_1);
-                    var images_1 = gallery_1.getElementsByClassName("gallery-images");
-                    for(let i = 0; i < images_1.length; i++){
+                    photoGallery.insertBefore(gallery_1, container);
+                    var images1 = gallery_1.getElementsByClassName("gallery-images");
+                    console.log(images1.length);
+                    for(let j = 0; j < images1.length; j++){
                         
-                        images_1[i].addEventListener("click", function(){
+                        images1[j].addEventListener("click", function(){
 
-                            container.style.backgroundImage = "url(" + images_1[i].src + ")";
-                            localStorage.setItem("selected-image", images_1[i].id - 1);
+                            imageContainer.style.backgroundImage = "url(" + images1[j].src + ")";
+                            localStorage.setItem("selected-image", images1[j].id - 1);
 
-                            if(photo_gallery.clientHeight < 540){
+                            if(photoGallery.clientHeight < 550){
                                 if(interval){
                                     cancelAnimationFrame(interval);
                                     interval = undefined;
@@ -191,6 +197,7 @@ window.addEventListener("load", function(){
 
                         });
                     }
+                    container.style.top =  gallery.clientHeight + parseFloat(window.getComputedStyle(gallery).marginBottom) + "px";
 
                     let pos = 0;
                     function update(){             
@@ -202,37 +209,35 @@ window.addEventListener("load", function(){
                            
                         pos--;
                         gallery.style.left = pos + 'px';
-                        gallery_1.style.left = pos + 'px';
+                        gallery_1.style.left = gallery.scrollWidth + pos + 'px';
                         interval = requestAnimationFrame(update);
                     }
                     update();
-
-
             
                     arrowLeft.onclick = ()=>{
                         if (localStorage.getItem("selected-image") =="0"){
-                            localStorage.setItem("selected-image", images.length - 1);
-                            container.style.backgroundImage =   "url(" + gallery.children[images.length - 1].src + ")";
+                            localStorage.setItem("selected-image", images1.length - 1);
+                            imageContainer.style.backgroundImage =   "url(" + gallery.children[parseInt(localStorage.getItem("selected-image"))].src + ")";
                         } else {
                             localStorage.setItem("selected-image", localStorage.getItem("selected-image") - 1);
-                            container.style.backgroundImage = `url(${gallery.children[parseInt(localStorage.getItem("selected-image"))].src})`;
+                            imageContainer.style.backgroundImage = `url(${gallery.children[parseInt(localStorage.getItem("selected-image"))].src})`;
                         }
                     };
                     arrowRight.addEventListener("click", ()=>{
 
-                        if (localStorage.getItem("selected-image") == images.length - 1){
+                        if (localStorage.getItem("selected-image") == images1.length - 1){
                             localStorage.setItem("selected-image", "0");
-                            container.style.backgroundImage =   "url(" + gallery.children[0].src + ")";
+                            imageContainer.style.backgroundImage =   "url(" + gallery.children[parseInt(localStorage.getItem("selected-image"))].src + ")";
                         } else {
                             localStorage.setItem("selected-image", parseInt(localStorage.getItem("selected-image")) + 1);
-                            container.style.backgroundImage =   "url(" + gallery.children[parseInt(localStorage.getItem("selected-image"))].src + ")";
+                            imageContainer.style.backgroundImage =   "url(" + gallery.children[parseInt(localStorage.getItem("selected-image"))].src + ")";
                         }
                     });
 
                     if(localStorage.getItem("selected-image") != null){
-                        container.style.backgroundImage =  "url(" + gallery.children[localStorage.getItem("selected-image")].src + ")";
+                        imageContainer.style.backgroundImage =  "url(" + gallery.children[localStorage.getItem("selected-image")].src + ")";
                     } else {
-                        container.style.backgroundImage = "url(" + gallery.children[0].src + ")";
+                        imageContainer.style.backgroundImage = "url(" + data[0].thumbnail.url + ")";
                         localStorage.setItem("selected-image", 0);
                     }
 
@@ -248,6 +253,20 @@ window.addEventListener("load", function(){
 
 
     
+
+    // let header = document.getElementById("header");
+    // let hero = document.getElementById("hero-section");
+
+    // document.onscroll = function(){
+    //     if(this.documentElement.scrollTop > this.documentElement.clientHeight){
+    //         header.classList.add("solid-header");
+    //         header.classList.remove("p-3");
+    //     } else {
+    //         header.classList.remove("solid-header");
+    //         header.classList.add("p-3");
+    //     }
+    // }
+
     $(document).scroll(function(){
         if(this.documentElement.scrollTop > this.documentElement.clientHeight){
             $("#header").addClass("solid-header");
@@ -286,13 +305,9 @@ window.addEventListener("load", function(){
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    L.marker([39.00662164313321, 23.2107612490654]).addTo(map).bindPopup('Pefki Villas:<br> 39.00662164313321, 23.2107612490654').openPopup();
-
-    map.on('click', function(ev) {
-        alert("Coordinates of clicked point are: " + ev.latlng.lat + ', ' + ev.latlng.lng);
-    });
-
-    L.marker([39.007309449817285, 23.21081489324574]).addTo(map);
+    L.marker([39.006525477492744, 23.210849951479815]).addTo(map)
+        .bindPopup('Pefki Villas:<br> 39.006525477492744, 23.210849951479815')
+        .openPopup();
 
 
     $(".map").each(function(){

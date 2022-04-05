@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Pefki Villas, Evia, Greece, summer, holiday, Grecia, Grčka, apartments, studios, apartmani, letovanje, apartamente, garsoniere, vacanța, mare">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >    <meta name="keywords" content="Pefki Villas, Evia, Greece, summer, holiday, Grecia, Grčka, apartments, studios, apartmani, letovanje, apartamente, garsoniere, vacanța, mare">
     <meta name="author" content="Gabriela Gradinaru">
     <title>Pefki Villas</title>
     <link rel="icon" href="images/icons/beach.png">
     <script src="https://kit.fontawesome.com/44d3121616.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -61,16 +61,16 @@
             </div>
             <div class="row px-3">
                 <div class="col-12 offset-sm-6 col-sm-6  d-flex justify-content-end" id="flags">
-                    <a href="#" class="flags" id="gr">
+                    <a class="flags" href="#hellas" id="gr">
                         <img src="images/icons/gr.png" alt="greek flag" title="ελληνικά">
                     </a>
-                    <a href="#" class="px-2 flags" id="eng">
+                    <a class="px-2 flags" href="#english" id="eng">
                         <img src="images/icons/uk.png" alt="british flag" title="english">
                     </a>
-                    <a href="#" class="pr-2 flags" id="ro">
+                    <a class="pr-2 flags" href="#romanian" id="ro">
                         <img src="images/icons/ro.png" alt="romanian flag" title="română">               
                     </a>
-                    <a href="#" class="flags" id="sr">
+                    <a class="flags" href="#serbian" id="sr">
                         <img src="images/icons/sr.png" alt="serbian flag" title="srpski">
                     </a>
                 </div>
@@ -81,9 +81,9 @@
     <section id="hero-section">
         <div class="container-fluid">
             <div class="row vh-100 px-3 py-4">
-                <div class="col-12 text-light text-center d-flex justify-content-center align-items-center">
+                <div class="col-12 text-light text-center d-flex flex-column justify-content-center align-items-center">
+                    <img id="hero-logo" src="images/icons/beach.png" alt="beach logo">
                     <div>
-                        <img id="hero-logo" src="images/icons/beach.png" alt="beach logo">
                         <h1 class="d-none d-md-block text-uppercase">YOUR HOLIDAY DESTINATION</h1>
                         <h3 class="d-md-none text-uppercase">YOUR HOLIDAY DESTINATION</h3>
                         <p class="lead">Perfect place to relax and enjoy the summer days</p>
@@ -98,15 +98,15 @@
             </span>
         </a>
     </section>
+    
 
     <section id="intro-section">
-
         <div class="container-fluid py-3">
             <div class="row justify-content-center">
                 <div class="col-10 col-xl-8 text-center py-5">
                     <h2 class="d-none d-md-block text-uppercase">GREAT SUMMER VACATION</h2>
                     <h3 class="d-md-none text-uppercase">GREAT SUMMER VACATION</h3>
-                    <p class="text-muted lead">Pefki is considered one of the premier vacation destinations in North Evia, since it has a highly developed tourist infrastructure and offers excellent hotel accommodation, rooms, apartments and studios throughout the course of the year.
+                    <p class="text-muted font-weight-normal lead">Pefki is considered one of the premier vacation destinations in North Evia, since it has a highly developed tourist infrastructure and offers excellent hotel accommodation, rooms, apartments and studios throughout the course of the year.
                         If you want a relaxing break away from the hectic pace of everyday life, Pefki is the perfect place.
                     </p>
                 </div>
@@ -163,18 +163,17 @@
                 </div>
             </div>
         </div>
-
     </section>
 
-    <section id="about-section">
 
+    <section id="about-section">
         <div class="container-fluid">
             <div class="row" id="description">
-                <div class="col-12 offset-md-1 col-md-5 align-self-center py-5">
+                <div class="col-12 offset-md-1 col-md-5 align-self-center p-5 px-md-0">
                     <h3 class="d-md-none text-center text-uppercase">EXCELLENT CHOICE</h3>
                     <h4 class="d-none d-md-block text-uppercase">EXCELLENT CHOICE</h4>
-                    <p class="text-muted lead font-weight-normal text-justify">Pefki Villas provides you rooms with the following facilities:</p>
-                    <ul class="text-muted lead font-weight-normal">
+                    <p class="text-muted font-weight-normal lead text-justify">Pefki Villas provides you rooms with the following facilities:</p>
+                    <ul class="text-muted font-weight-normal lead">
                         <li>television</li>
                         <li>air conditioning</li>
                         <li>refrigerator</li>
@@ -200,8 +199,8 @@
 
     <section id="find-us-section">
         <div class="container-fluid">
-            <div class="row align-items-center" id="about-bg-2">
-                <div class="col-12 offset-md-6 col-md-6 text-light p-5 text-justify">
+            <div class="row align-items-center px-3" id="about-bg-2">
+                <div class="col-12 offset-md-6 col-md-6 text-light p-5 pl-md-0 text-justify">
                     <h3 class="d-md-none text-uppercase text-center">HOW TO FIND US</h3>
                     <h4 class="d-none d-md-block text-left text-uppercase">HOW TO FIND US</h4>
                     <p class="lead font-weight-normal">
@@ -270,6 +269,7 @@
     <script src="js/jquery-3.4.1.slim.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/leaflet.js"></script>
+    <script src="//unpkg.com/leaflet-gesture-handling"></script>
 
     <script src="js/script.js"></script>
 
